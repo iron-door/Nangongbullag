@@ -4,26 +4,27 @@ using UnityEngine;
 
 public class MoveGames : MonoBehaviour
 {
-    Rigidbody2D rigid;
-
+    RectTransform trans;
+    Vector3 LeftVec = new Vector3(300,0,0);
+    Vector3 RightVec = new Vector3(-300, 0, 0);
     private void Awake()
     {
-        rigid = GetComponent<Rigidbody2D>();
+        trans = GetComponent<RectTransform>();
     }
-
+    
     public void LB()
     {
-        if (rigid.position.x < 11)
+        if (trans.localPosition.x < 599)
         {
-            transform.Translate(6, 0, 0);
+            transform.localPosition += LeftVec;
         }
     }
 
     public void RB()
     {
-        if (rigid.position.x > -11)
+        if (trans.localPosition.x > -599)
         {
-            transform.Translate(-6, 0, 0);
+            transform.localPosition += RightVec;
         }
     }
 
@@ -31,18 +32,18 @@ public class MoveGames : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow) == true)
         {
-            if (rigid.position.x < 11)
+            if (trans.localPosition.x < 599)
             {
-                transform.Translate(6, 0, 0);
+                transform.localPosition += LeftVec;
             }
             
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow) == true)
         {
-            if (rigid.position.x > -11)
+            if (trans.localPosition.x > -599)
             {
-                transform.Translate(-6, 0, 0);
+                transform.localPosition += RightVec;
             }
 
         }

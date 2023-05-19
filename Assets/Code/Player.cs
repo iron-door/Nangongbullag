@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     SpriteRenderer spriter;
     public Vector2 inputVec;
     public float speed;
-    public int num = 0;
+    public int index;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -37,15 +37,21 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (num == 0 && collision.gameObject.tag == "Enemy")
+        if (index == 0 && collision.gameObject.tag == "Enemy")
         {
             SceneManager.LoadScene("Game3");
-            num++;
         }
-        if (num == 1 && collision.gameObject.tag == "Enemy")
+        else if (index == 1 && collision.gameObject.tag == "Enemy")
         {
             SceneManager.LoadScene("Game5");
-            num++;
+        }
+        else if (index == 2 && collision.gameObject.tag == "Enemy")
+        {
+            SceneManager.LoadScene("Game7");
+        }
+        else if (collision.gameObject.tag == "Castle")
+        {
+            SceneManager.LoadScene("Game9");
         }
     }
 }
