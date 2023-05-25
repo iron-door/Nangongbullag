@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     SpriteRenderer spriter;
     public Vector2 inputVec;
     public float speed;
+    public float speed1;
     public int index;
     private void Awake()
     {
@@ -23,7 +24,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
+        Vector2 nextVec = new Vector2(inputVec.x * speed * Time.fixedDeltaTime, inputVec.y * speed1 * Time.fixedDeltaTime);
         rigid.MovePosition(rigid.position + nextVec);
     }
 
@@ -49,9 +50,13 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene("Game7");
         }
-        else if (collision.gameObject.tag == "Castle")
+        else if (index == 3 && collision.gameObject.tag == "Castle")
         {
             SceneManager.LoadScene("Game9");
+        }
+        else if (index == 4 && collision.gameObject.tag == "Enemy")
+        {
+            SceneManager.LoadScene("Game10");
         }
     }
 }
